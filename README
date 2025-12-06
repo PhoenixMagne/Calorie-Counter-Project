@@ -14,6 +14,12 @@ git add <files you changed, could be "*" to add all files>
 git commit -m "added a new feature that does xyz"
 git push origin main
 
+if you get an error saying "failed to push some refs because of non fast-forward"
+then that means that someone else has made changes to the repo since you last pulled.
+in this case, do a 
+git pull origin main
+and then repeat the steps above after resolving any merge conflicts.
+
 doing this regularly will help make sure that we don't have a lot of merge conflicts
 when multiple people are working on the same files.
 
