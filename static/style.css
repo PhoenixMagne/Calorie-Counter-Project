@@ -1,0 +1,139 @@
+/* general */
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background: #f7f9fc;
+  color: #333;
+}
+
+header {
+  background: #4caf50;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 400;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+main {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* progress Circle */ 
+.progress-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.progress-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 12px solid #ddd;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  background: white;
+  font-weight: 400;
+}
+
+.progress-circle.filled {
+  border-color: #4caf50;
+}
+
+/* forms */
+.goal-form, .add-post-form {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.goal-form h2, .add-post-form h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+input, textarea, button {
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  margin-top: 5px;
+}
+
+button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #43a047;
+}
+
+/* feed */
+#feed {
+  margin-top: 25px;
+}
+
+.post {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.post-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.calories {
+  font-size: 1rem;
+  color: #d32f2f;
+  margin: 5px 0;
+}
+
+.description {
+  color: #555;
+}
+
+.view-post-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.view-post-link:hover {
+  text-decoration: underline;
+}
+
+/* footer */
+footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+#addPostBtn {
+  background: #4caf50;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+}
