@@ -26,7 +26,7 @@ app.get('/', (req, res) => {// Route for the home page (all posts)
 });
 
 // Route for single post view
-app.get('/posts/:n', (req, res, next) => { // Route for single post
+app.get('/posts/:n', (req, res, next) => { 
   const postIndex = parseInt(req.params.n);
 
   if (isNaN(postIndex) || postIndex < 0 || postIndex >= postData.length) {//handles invalid post index
