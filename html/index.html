@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>CalorieSync</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -13,18 +13,30 @@
 
   <main>
     <!-- Progress Circle -->
-    <aside class="progress-tracker">
+    <aside class="progress-container">
       <div class="progress-circle" id="progressCircle">
-        <span id="progressText">25%</span>
+        <span id="progressText">0%</span>
       </div>
     </aside>
 
-    <!-- Post Form -->
-    <section class="add-post-form" id="postForm" style="display:none;">
-      <h2>Add New Post</h2>
+    <!-- Daily Goal Form (separate) -->
+    <section class="goal-form">
+      <h2>Set Your Daily Calorie Goal</h2>
+      <form id="goalForm">
+        <input type="number" id="dailyGoal" placeholder="e.g. 2000" required>
+        <button type="submit">Set Goal</button>
+      </form>
+    </section>
+
+    <!-- Add Food Post Form -->
+    <section class="add-post-form">
+      <h2>Add Food</h2>
       <form id="newPostForm">
         <label>Food Image:</label>
         <input type="file" id="foodImage" accept="image/*" required><br><br>
+
+        <label>Food Name:</label>
+        <input type="text" id="foodName" required><br><br>
 
         <label>Calories:</label>
         <input type="number" id="calories" required><br><br>
@@ -32,21 +44,19 @@
         <label>Description:</label>
         <textarea id="description" required></textarea><br><br>
 
-        <button type="submit">Post</button>
+        <button type="submit">Add Post</button>
       </form>
     </section>
 
     <!-- Feed -->
-    <section class="feed" id="feed">
-      <!-- Posts will appear here dynamically -->
+    <section id="feed">
+      <!-- Posts will appear here -->
     </section>
   </main>
 
   <!-- Add Post Button -->
   <footer>
-    <div class="add-post-container">
-      <button id="addPostBtn">➕ Add Post</button>
-    </div>
+    <button id="addPostBtn">➕ Add Post</button>
   </footer>
 
   <script src="script.js"></script>
