@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CalorieSync</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>CalorieSync</h1>
+  </header>
+
+  <main>
+    <!-- Progress Circle -->
+    <aside class="progress-tracker">
+      <div class="progress-circle" id="progressCircle">
+        <span id="progressText">25%</span>
+      </div>
+    </aside>
+
+    <!-- Post Form -->
+    <section class="add-post-form" id="postForm" style="display:none;">
+      <h2>Add New Post</h2>
+      <form id="newPostForm">
+        <label>Food Image:</label>
+        <input type="file" id="foodImage" accept="image/*" required><br><br>
+
+        <label>Calories:</label>
+        <input type="number" id="calories" required><br><br>
+
+        <label>Description:</label>
+        <textarea id="description" required></textarea><br><br>
+
+        <button type="submit">Post</button>
+      </form>
+    </section>
+
+    <!-- Feed -->
+    <section class="feed" id="feed">
+      <!-- Posts will appear here dynamically -->
+    </section>
+  </main>
+
+  <!-- Add Post Button -->
+  <footer>
+    <div class="add-post-container">
+      <button id="addPostBtn">➕ Add Post</button>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
