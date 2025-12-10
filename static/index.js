@@ -72,3 +72,27 @@ newPostForm.addEventListener("submit", (e) => {
 document.getElementById("addPostBtn").addEventListener("click", () => {
   newPostForm.scrollIntoView({ behavior: "smooth" });
 });
+
+
+// Calorie Preset Handling - has multiple preset options,
+// If user selects "Custom", show input field for manual entry
+const caloriePreset = document.getElementById("caloriePreset");
+const calorieInput = document.getElementById("calories");
+calorieInput.value = ""
+calorieInput.style.display = "none"; // Hide custom input by default
+
+// Update field form on dropdown selection
+caloriePreset.addEventListener("change", () => {
+  if (caloriePreset.value === "custom") {
+    // Show custom input field
+    calorieInput.style.display = "inline-block";
+    calorieInput.value = ""; // Clear any previous value
+    calorieInput.required = true; // Ensure user types something
+    calorieInput.focus();
+  } else {
+    // Hide input and use the preset value
+    calorieInput.style.display = "none";
+    calorieInput.value = caloriePreset.value;
+    calorieInput.required = false; // Preset satisfies the requirement
+  }
+});
