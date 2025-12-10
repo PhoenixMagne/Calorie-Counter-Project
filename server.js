@@ -20,6 +20,17 @@ function loadPosts() {
   return [];
 }
 
+//parse json for food data that will be used as presets in the add post form
+app.get('/api/foods', (req, res) => {
+  try {
+    const foodData = fs.readFileSync(path.join(__dirname, 'food.json'), 'utf8');
+    res.json(JSON.parse(foodData));
+  } catch (err) {
+    console.error("Error reading food.json:", err);
+    res.json([]);
+  }
+});
+
 app.get('/', (req, res) => {
   res.render('index', {
     posts: loadPosts(),
@@ -49,6 +60,8 @@ app.get('/health', (_req, res) => {
 app.use('*', (req, res) => {
   res.status(404).render('404');
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);

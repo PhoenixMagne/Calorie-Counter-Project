@@ -73,26 +73,85 @@ document.getElementById("addPostBtn").addEventListener("click", () => {
   newPostForm.scrollIntoView({ behavior: "smooth" });
 });
 
+// Food item preset searching and handling
 
-// Calorie Preset Handling - has multiple preset options,
-// If user selects "Custom", show input field for manual entry
-const caloriePreset = document.getElementById("caloriePreset");
-const calorieInput = document.getElementById("calories");
-calorieInput.value = ""
-calorieInput.style.display = "none"; // Hide custom input by default
+const foodSearchInput = document.getElementById("foodSearch");
+const resultsList = document.getElementById("searchResults");
+let foodData = [];
 
-// Update field form on dropdown selection
-caloriePreset.addEventListener("change", () => {
-  if (caloriePreset.value === "custom") {
-    // Show custom input field
-    calorieInput.style.display = "inline-block";
-    calorieInput.value = ""; // Clear any previous value
-    calorieInput.required = true; // Ensure user types something
-    calorieInput.focus();
+// on load, fetch the data
+fetch('/api/foods')
+  .then(res => res.json())
+  .then(data => {
+    foodData = data;
+  })
+  .catch(err => console.error("Could not load food data", err));
+
+//search code 
+foodSearchInput.addEventListener("input", (e) => {
+  const query = e.target.value.toLowerCase();
+  resultsList.innerHTML = ""; // clears previous results
+
+  if (query.length < 1) {
+    resultsList.classList.add("hidden");
+    return;
+  }
+
+  //filter foods based on user input
+  const matches = foodData.filter(item => 
+    item.name.toLowerCase().includes(query)
+  );
+
+  // use inner html to create dropdown list
+  if (matches.length > 0) {
+    matches.forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${item.name}</span> 
+        <span class="meta">${item.calories_per_100g} cal/100g</span>
+      `;
+      
+      // Click Handler for Autofill
+      li.addEventListener("click", () => {
+        selectFood(item);
+      });
+      
+      resultsList.appendChild(li);
+    });
+    resultsList.classList.remove("hidden");
   } else {
-    // Hide input and use the preset value
-    calorieInput.style.display = "none";
-    calorieInput.value = caloriePreset.value;
-    calorieInput.required = false; // Preset satisfies the requirement
+    resultsList.classList.add("hidden");
   }
 });
+
+//when user presses enter, select the first item in the dropdown
+foodSearchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault(); // prevents unwanted form submission from pressing enter
+    //find the first option in the dropdown
+    const firstResult = resultsList.querySelector("li");
+    
+    if (firstResult) {
+      firstResult.click();
+    }
+  }
+});
+
+//when user clicks outside, hide the dropdown menu
+document.addEventListener("click", (e) => {
+  if (!foodSearchInput.contains(e.target) && !resultsList.contains(e.target)) {
+    resultsList.classList.add("hidden");
+  }
+});
+
+function selectFood(item) {
+  // fill in the food name input w/ the selected item's name and calories
+  document.getElementById("foodName").value = item.name;
+  document.getElementById("calories").value = item.calories_per_100g;
+
+  //insert image handling here when sam decides to wake up
+  
+  //close search results
+  foodSearchInput.value = "";
+  resultsList.classList.add("hidden");
+}

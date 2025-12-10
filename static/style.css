@@ -51,6 +51,7 @@ main {
 .goal-form, .add-post-form {
   background: white;
   padding: 20px;
+  padding-right: 40px;
   border-radius: 12px;
   margin-bottom: 30px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -71,16 +72,84 @@ input, textarea, button, select{
   margin-top: 5px;
 }
 
+select{
+  width: 102.6%;
+}
+
 button {
   background: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
   margin-top: 10px;
+  width: 102.6%;
 }
 
 button:hover {
   background: #43a047;
+}
+
+/* preset search box styles */
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative; /* For dropdown positioning */
+}
+
+.search-container {
+  position: relative;
+  width: 250px;
+}
+
+#foodSearch {
+  margin-top: 0; 
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 20px; 
+}
+
+/* dropdown presets styles */
+.results-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.results-list.hidden {
+  display: none;
+}
+
+/* dropdown list items */
+.results-list li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.results-list li:hover {
+  background-color: #f0f7f1;
+  color: #4caf50;
+}
+
+.results-list li span.meta {
+  color: #888;
+  font-size: 0.8rem;
 }
 
 /* feed */
@@ -137,3 +206,4 @@ footer {
   border-radius: 50px;
   font-size: 1.1rem;
 }
+
