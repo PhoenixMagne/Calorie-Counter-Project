@@ -44,7 +44,7 @@ document.getElementById("goalForm").addEventListener("submit", (e) => {
   updateProgress();
 });
 
-// Adding Posts (Client Side Only)
+// Adding Post (Client Side Only)
 const newPostForm = document.getElementById("newPostForm");
 const feed = document.getElementById("feed");
 
