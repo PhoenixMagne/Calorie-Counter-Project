@@ -28,6 +28,11 @@ document.getElementById("goalForm").addEventListener("submit", (e) => {
   updateProgress();
 });
 
+//clear preset image if user uploads a file manually
+document.getElementById("foodImage").addEventListener("change", () => {
+  document.getElementById("presetImage").value = "";
+});
+
 //Adding Posts (Client Side Only)
 const newPostForm = document.getElementById("newPostForm");
 const feed = document.getElementById("feed");
@@ -38,22 +43,34 @@ newPostForm.addEventListener("submit", (e) => {
   const name = document.getElementById("foodName").value;
   const calories = parseInt(document.getElementById("calories").value);
   const description = document.getElementById("description").value;
+  
   const fileInput = document.getElementById("foodImage");
+  const presetInput = document.getElementById("presetImage");
+
+  // make sure that either a file is uploaded or a preset is selected
+  if (fileInput.files.length === 0 && !presetInput.value) {
+    alert("Please upload an image or select a preset.");
+    return;
+  }
 
   // Update calorie tracking
   caloriesConsumed += calories;
   updateProgress();
 
-  // Create new feed post visually
   const post = document.createElement("article");
   post.classList.add("post");
 
-  // Convert image file → preview URL
-  const file = fileInput.files[0];
+  // image logic
   let imgTag = "";
+  const file = fileInput.files[0];
+
   if (file) {
+    // if user has uploaded file use that
     const url = URL.createObjectURL(file);
     imgTag = `<img src="${url}" class="post-image">`;
+  } else if (presetInput.value) {
+    // else if user selected a preset use the jpg from preset
+    imgTag = `<img src="${presetInput.value}" class="post-image">`;
   }
 
   post.innerHTML = `
@@ -63,11 +80,12 @@ newPostForm.addEventListener("submit", (e) => {
     <p class="description">${description}</p>
   `;
 
-  feed.prepend(post); // Add new post to the top of the feed
-
+  feed.prepend(post); 
   newPostForm.reset();
+  
+  // Reset hidden field after submit
+  presetInput.value = "";
 });
-
 // Add Post Button Scroll
 document.getElementById("addPostBtn").addEventListener("click", () => {
   newPostForm.scrollIntoView({ behavior: "smooth" });
@@ -145,13 +163,41 @@ document.addEventListener("click", (e) => {
 });
 
 function selectFood(item) {
-  // fill in the food name input w/ the selected item's name and calories
+  // fill text fields
   document.getElementById("foodName").value = item.name;
   document.getElementById("calories").value = item.calories_per_100g;
-
-  //insert image handling here when sam decides to wake up
   
-  //close search results
+  // auto-fill description as well
+  document.getElementById("description").value = `A serving of ${item.type}`;
+
+  // image handling
+  const fileInput = document.getElementById("foodImage");
+  const presetInput = document.getElementById("presetImage");
+
+  // clear manual file upload
+  fileInput.value = ""; 
+
+  let finalUrl = "";
+  if (item.photo) {
+    finalUrl = item.photo; 
+  } else {
+    finalUrl = "https://cdn-icons-png.flaticon.com/512/706/706164.png";
+  }
+  
+  // Set the hidden value
+  presetInput.value = finalUrl;
+
+  imageStatus.innerHTML = "Preset selected - upload image to override preset image";
+
+  // Close search results
   foodSearchInput.value = "";
   resultsList.classList.add("hidden");
 }
+// code for if preset is selected, let user know that an image will be used
+const imageStatus = document.getElementById("imageStatus");
+
+// if user manually picks a file, clear the preset and status
+document.getElementById("foodImage").addEventListener("change", () => {
+  document.getElementById("presetImage").value = "";
+  imageStatus.innerHTML = ""; // Remove the "Using preset" text
+});
