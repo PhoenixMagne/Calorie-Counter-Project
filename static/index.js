@@ -51,6 +51,7 @@ document.getElementById("foodImage").addEventListener("change", () => {
     document.getElementById("presetImage").value = "";
 });
 
+/* EVERYTHING BELOW THIS LINE IS UNCHANGED — EXACT COPY OF YOUR ORIGINAL CODE */
 
 //Adding Posts (Client Side Only)
 const newPostForm = document.getElementById("newPostForm");

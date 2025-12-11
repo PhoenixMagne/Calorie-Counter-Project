@@ -1,5 +1,5 @@
 {
-    "name": "CalorieSync-App",
+    "name": "caloriesync-app",
     "version": "1.0.0",
     "description": "An app to keep track of calories and post about it.",
     "main": "server.js",

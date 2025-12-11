@@ -41,7 +41,13 @@
 
       <form id="newPostForm">
         <label>Food Image:</label>
-        <input type="file" id="foodImage" accept="image/*" required><br><br>
+        <input type="file" id="foodImage" accept="image/*"><br><br> 
+        <!-- add a span to show user that preset worked -->
+          <span id="imageStatus" style="margin-left: 10px; font-size: 0.9rem; color: #4caf50;"></span>
+          <br><br> 
+        <!-- additional input to store preset image URL -->
+        <input type="hidden" id="presetImage">
+
 
         <label>Food Name:</label>
         <input type="text" id="foodName" required><br><br>
