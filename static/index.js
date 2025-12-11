@@ -7,18 +7,34 @@ const progressText = document.getElementById("progressText");
 
 function updateProgress() {
   if (dailyGoal <= 0) {
-    progressText.textContent = "0%";
-    progressCircle.classList.remove("filled");
+    updateCircle(0);
     return;
   }
 
   const percent = Math.min(Math.round((caloriesConsumed / dailyGoal) * 100), 100);
+  updateCircle(percent);
+}
+
+// NEW — updates the circle’s fill + color
+function updateCircle(percent) {
   progressText.textContent = percent + "%";
 
-  if (percent >= 100) {
-    progressCircle.classList.add("filled");
+  // Convert percent to degrees for conic-gradient
+  const degrees = (percent / 100) * 360;
+
+  // Apply degrees
+  progressCircle.style.setProperty("--deg", degrees + "deg");
+
+  // Remove old color classes
+  progressCircle.classList.remove("progress-red", "progress-yellow", "progress-green");
+
+  // Apply red/yellow/green based on progress
+  if (percent < 40) {
+    progressCircle.classList.add("progress-red");
+  } else if (percent < 80) {
+    progressCircle.classList.add("progress-yellow");
   } else {
-    progressCircle.classList.remove("filled");
+    progressCircle.classList.add("progress-green");
   }
 }
 
@@ -28,7 +44,7 @@ document.getElementById("goalForm").addEventListener("submit", (e) => {
   updateProgress();
 });
 
-//Adding Posts (Client Side Only)
+// Adding Posts (Client Side Only)
 const newPostForm = document.getElementById("newPostForm");
 const feed = document.getElementById("feed");
 

@@ -22,7 +22,7 @@ main {
   margin: auto;
 }
 
-/* progress Circle */ 
+/* Progress Circle */
 .progress-container {
   display: flex;
   justify-content: center;
@@ -33,22 +33,39 @@ main {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 12px solid #ddd;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.4rem;
-  background: white;
   font-weight: 400;
+
+  /* default empty ring */
+  background: conic-gradient(#ddd 0deg, #ddd 360deg);
+  transition: background 0.4s ease;
 }
 
-.progress-circle.filled {
-  border-color: #4caf50;
+.progress-circle span {
+  position: relative;
+  z-index: 2;
 }
 
-/* forms */
-.goal-form, .add-post-form {
+/* Color zones */
+.progress-red {
+  background: conic-gradient(red var(--deg), #ddd 0deg);
+}
+
+.progress-yellow {
+  background: conic-gradient(yellow var(--deg), #ddd 0deg);
+}
+
+.progress-green {
+  background: conic-gradient(#4caf50 var(--deg), #ddd 0deg);
+}
+
+/* Forms */
+.goal-form,
+.add-post-form {
   background: white;
   padding: 20px;
   padding-right: 40px;
@@ -57,13 +74,20 @@ main {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.goal-form h2, .add-post-form h2 {
+.goal-form h2,
+.add-post-form h2 {
   margin-top: 0;
   font-size: 1.3rem;
   font-weight: 400;
 }
 
+<<<<<<< HEAD
 input, textarea, button, select{
+=======
+input,
+textarea,
+button {
+>>>>>>> 97bf67d (Implemented color-changing progress circle and updated CSS styling for calorie progress feedback (lucky))
   width: 100%;
   font-size: 1rem;
   padding: 10px;
@@ -89,6 +113,7 @@ button:hover {
   background: #43a047;
 }
 
+<<<<<<< HEAD
 /* preset search box styles */
 .form-header {
   display: flex;
@@ -153,6 +178,9 @@ button:hover {
 }
 
 /* feed */
+=======
+/* Feed */
+>>>>>>> 97bf67d (Implemented color-changing progress circle and updated CSS styling for calorie progress feedback (lucky))
 #feed {
   margin-top: 25px;
 }
@@ -193,7 +221,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* footer */
+/* Footer */
 footer {
   position: fixed;
   bottom: 20px;
