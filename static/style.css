@@ -22,7 +22,7 @@ main {
   margin: auto;
 }
 
-/* Progress Circle */
+/* progress Circle */
 .progress-container {
   display: flex;
   justify-content: center;
@@ -33,39 +33,49 @@ main {
   width: 140px;
   height: 140px;
   border-radius: 50%;
+  border: 12px solid #ddd;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.4rem;
+  background: white;
   font-weight: 400;
-
-  /* default empty ring */
-  background: conic-gradient(#ddd 0deg, #ddd 360deg);
-  transition: background 0.4s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.progress-circle span {
-  position: relative;
-  z-index: 2;
+/* Color states */
+.progress-circle.green {
+  border-color: #4caf50;
 }
 
-/* Color zones */
-.progress-red {
-  background: conic-gradient(red var(--deg), #ddd 0deg);
+.progress-circle.yellow {
+  border-color: #ffb300;
 }
 
-.progress-yellow {
-  background: conic-gradient(yellow var(--deg), #ddd 0deg);
+.progress-circle.red {
+  border-color: #e53935;
 }
 
-.progress-green {
-  background: conic-gradient(#4caf50 var(--deg), #ddd 0deg);
+.progress-circle.over {
+  border-color: #b71c1c;
+  animation: overPulse 1s infinite;
 }
 
-/* Forms */
-.goal-form,
-.add-post-form {
+/* Glow when full */
+.progress-circle.full {
+  box-shadow: 0 0 18px rgba(76, 175, 80, 0.9);
+}
+
+/* Over 100% pulse */
+@keyframes overPulse {
+  0% { box-shadow: 0 0 0px rgba(183, 28, 28, 0.8); }
+  50% { box-shadow: 0 0 18px rgba(183, 28, 28, 1); }
+  100% { box-shadow: 0 0 0px rgba(183, 28, 28, 0.8); }
+}
+
+/* forms */
+.goal-form, .add-post-form {
   background: white;
   padding: 20px;
   padding-right: 40px;
@@ -74,20 +84,13 @@ main {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.goal-form h2,
-.add-post-form h2 {
+.goal-form h2, .add-post-form h2 {
   margin-top: 0;
   font-size: 1.3rem;
   font-weight: 400;
 }
 
-<<<<<<< HEAD
-input, textarea, button, select{
-=======
-input,
-textarea,
-button {
->>>>>>> 97bf67d (Implemented color-changing progress circle and updated CSS styling for calorie progress feedback (lucky))
+input, textarea, button, select {
   width: 100%;
   font-size: 1rem;
   padding: 10px;
@@ -96,7 +99,7 @@ button {
   margin-top: 5px;
 }
 
-select{
+select {
   width: 102.6%;
 }
 
@@ -113,14 +116,13 @@ button:hover {
   background: #43a047;
 }
 
-<<<<<<< HEAD
 /* preset search box styles */
 .form-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
-  position: relative; /* For dropdown positioning */
+  position: relative;
 }
 
 .search-container {
@@ -129,10 +131,10 @@ button:hover {
 }
 
 #foodSearch {
-  margin-top: 0; 
+  margin-top: 0;
   padding: 8px 12px;
   font-size: 0.9rem;
-  border-radius: 20px; 
+  border-radius: 20px;
 }
 
 /* dropdown presets styles */
@@ -178,9 +180,6 @@ button:hover {
 }
 
 /* feed */
-=======
-/* Feed */
->>>>>>> 97bf67d (Implemented color-changing progress circle and updated CSS styling for calorie progress feedback (lucky))
 #feed {
   margin-top: 25px;
 }
@@ -193,7 +192,7 @@ button:hover {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.post-image { 
+.post-image {
   width: 100%;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -221,7 +220,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* Footer */
+/* footer */
 footer {
   position: fixed;
   bottom: 20px;
@@ -234,4 +233,3 @@ footer {
   border-radius: 50px;
   font-size: 1.1rem;
 }
-
