@@ -64,6 +64,7 @@
     </section>
 
     <!-- Feed -->
+     <!-- If they want to post, then it pops up this feed -->
     <section id="feed">
       <% if (isSinglePostPage) { %>
         <h2>Post Details</h2>
@@ -82,7 +83,7 @@
           <% } %>
         </article>
       <% }); %>
-
+<!-- if theres no post yet, this pops up on the bottom-->
       <% if (posts.length === 0) { %>
         <p class="no-posts">No food posts yet. Add your first post!</p>
       <% } %>
